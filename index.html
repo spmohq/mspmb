@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>আমার প্রোফাইল</title>
+  <title>My Profile | Siva Prasad Mukherjee</title>
   <link rel="icon" type="image/x-icon" href="spm.ico" />
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=68433345a7cb4a0019841b7c&product=sop' async='async'></script>
 
@@ -38,14 +37,15 @@
       font-size: 18px;
       line-height: 1.6;
     }
-    a.button {
+    button.button {
       display: inline-block;
       padding: 12px 24px;
       margin: 10px 0;
       border-radius: 8px;
-      text-decoration: none;
       font-weight: bold;
       font-size: 16px;
+      border: none;
+      cursor: pointer;
     }
     .btn-yellow {
       background-color: #d9a441;
@@ -100,53 +100,51 @@
     }
   </style>
 </head>
-<BODY oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
+
+<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
 
   <img src="name.jpg" alt="My Photo" class="profile">
 
-  <h2>👋 হ্যালো, আমি শিবপ্রসাদ মুখার্জি</h2>
+  <h2>👋 Hi, I'm Siva Prasad Mukherjee</h2>
 
   <p>
-    আমি ক্লাস ৯-১২-এর ছাত্রছাত্রীদের জন্য পড়াশোনার আধুনিক পদ্ধতি আর টেক-হেল্প নিয়ে কাজ করি।  
-নতুন নতুন টেকনিক, সহজ টিপস — এসব আমি তোমাদের জন্য শেয়ার করি, যাতে পড়াশোনাটা হয় আনন্দময় আর তা কাজে লাগে।<br>
-     তোমার পড়াশোনায় এগুলো কাজে লাগতে পারে – তাই আমার কনটেন্টে চোখ বুলাও। 😊<br>
-    আর যদি তা ভালো লাগে, তাহলে আমাকে একটা ভার্চুয়াল চা খাওয়াতে পারো! ☕
+    I help local business owners get found online — with simple content, tools, and tips that actually work, even if you’re not tech-savvy.<br><br>
+    Whether you're trying to attract more customers by showing up when people search “near me”, improve your website, or explain your services through a blog or social media posts — I'm here to help you do that without confusion or overwhelm.<br><br>
+    Explore my free resources, stay connected, and feel free to message me directly on WhatsApp if you’d like personal help.
   </p>
-
-  <a href="https://chai.spm.in.net" class="button btn-yellow">☕ আমাকে চা খাওয়াও</a>
 
   <hr>
 
   <div class="card-container">
     <div class="card">
-      <h4>📘 ব্লগ পড়ো</h4>
-      <p>পড়াশোনাকে সহজ আর আনন্দময় করার স্ট্র্যাটেজি, টেকনিক, ট্রিকস আর গাইডলাইন নিয়ে আমি লিখি। আমার সেসব লেখা পড়তে –</p>
-      <a href="https://blog.studyskills.co.in/" class="button btn-blue">ব্লগে যাও</a>
+      <h4>📘 Read My Blog</h4>
+      <p>Learn simple strategies, tools, and examples to help you promote your local business online — even if you're not tech-savvy.</p>
+      <button class="button btn-blue" onclick="window.open('https://ko-fi.com/spmhq/posts', '_blank')">Visit Blog</button>
     </div>
+
     <div class="card">
-      <h4>🔐 সাবস্ক্রাইব করো</h4>
+      <h4>🔐 Subscribe</h4>
       <p style="font-size:15px; line-height:1.5;">
-        👉 আমার সব কনটেন্ট সবার জন্য না।<br>
-        কিছু এক্সক্লুসিভ কনটেন্ট আছে যা শুধুমাত্র সাবস্ক্রাইবারদের জন্য।<br>
-        যদি তোমার পড়াশোনায় এগুলো সাহায্য করে — তাহলে নিচের বাটনে ক্লিক করে সাবস্ক্রাইব করো। 😊
+        Not all content is for everyone.<br>
+        Some of my tips and tools are exclusive to subscribers.<br>
+        If you're serious about growing your business online, subscribe to get early access.
       </p>
-      <a href="https://s.spm.in.net/" class="button btn-green">সাবস্ক্রাইব করো</a>
+      <button class="button btn-green" onclick="window.open('https://s.spm.in.net/', '_blank')">Subscribe Now</button>
     </div>
+
     <div class="card">
-      <h4>📱 WhatsApp এ যোগাযোগ</h4>
-      <p>পড়াশোনা নিয়ে তোমার কোনও সমস্যা বা প্রশ্ন থাকলে তার সমাধান পেতে আমাকে সরাসরি WhatsApp এ মেসেজ করো।</p>
-      <a href="https://wa.me/919876543210" class="button btn-whatsapp">WhatsApp করো</a>
+      <h4>📱 Chat on WhatsApp</h4>
+      <p>Need help with your online presence? Send me a message on WhatsApp and let's talk about what’s possible for your business.</p>
+      <button class="button btn-whatsapp" onclick="window.open('https://wa.me/919876543210', '_blank')">Message Me</button>
     </div>
   </div>
 
+  <div style="padding-top: 40px;"> </div>
 
-  <!-- Footer -->
-      <div style="padding-top: 40px;"> </div>
   <footer>
-
     <p>Copyright &copy;
       <script>document.write(new Date().getFullYear())</script>
-      <span lang="en">Siva Prasad Mukherjee. All Rights Reserved.</span>
+      Siva Prasad Mukherjee. All Rights Reserved.
     </p>
   </footer>
 
@@ -173,13 +171,14 @@
     // Disable keyboard shortcuts for dev tools
     document.onkeydown = function(e) {
       if (
-        e.key === "F12" || // F12
-        (e.ctrlKey && e.shiftKey && ["I", "C", "J"].includes(e.key.toUpperCase())) || // Ctrl+Shift+I/C/J
-        (e.ctrlKey && e.key.toUpperCase() === "U") // Ctrl+U
+        e.key === "F12" ||
+        (e.ctrlKey && e.shiftKey && ["I", "C", "J"].includes(e.key.toUpperCase())) ||
+        (e.ctrlKey && e.key.toUpperCase() === "U")
       ) {
         return false;
       }
     };
   </script>
+
 </body>
 </html>
