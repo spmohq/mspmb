@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <title>আমাকে এক কাপ চা দিন</title>
+  <link rel="icon" type="image/x-icon" href="spm.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Fonts: Noto Sans Bengali -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Open Graph for Facebook -->
+  <meta property="og:title" content="☕ আমাকে এক কাপ চা দিন" />
+  <meta property="og:description" content="আমার কাজ উপভোগ করছেন? একটি ভার্চুয়াল কাপ চা দিয়ে আমাকে সমর্থন করুন ☕" />
+  <meta property="og:image" content="https://chai.spm.co.in/fb-preview.jpg" />
+  <meta property="og:url" content="https://chai.spm.co.in" />
+  <meta property="og:type" content="website" />
+
+  <style>
+    body {
+      font-family: 'Noto Sans Bengali', system-ui, sans-serif;
+      background: #e6f2ed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+      color: #2c2c2c;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 30px;
+      max-width: 420px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 26px;
+      color: #2a4f6e;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 1.5em;
+    }
+    
+    .action-button, #upi-link {
+      display: inline-block;
+      background-color: #d9a441;
+      text-decoration: none;
+      color: #000;
+      border: none;
+      padding: 14px 28px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+      font-weight: bold;
+      transition: background-color 0.2s ease;
+    }
+
+    .action-button:hover, #upi-link:hover {
+      background-color: #c49037;
+    }
+
+    #qr-container,
+    #upi-link-container,
+    #instruction {
+      margin-top: 25px;
+      display: none;
+    }
+
+    #qr-container img {
+      width: 220px;
+      height: 220px;
+      border-radius: 12px;
+      border: 3px solid #d9a441;
+    }
+    
+    #google_translate_element {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+
+    #instruction {
+      font-size: 1em;
+      background-color: #f0f4f8;
+      color: #333;
+      padding: 15px 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      border: 1px solid #d6e0ea;
+    }
+  </style>
+</head>
+<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
+
+  <!-- Google Translate -->
+  <div id="google_translate_element"></div>
+
+  <div class="card">
+    <h1>☕ আমাকে এক কাপ চা দিন</h1>
+    <p>যদি আমার কাজ আপনাকে সাহায্য করে বা অনুপ্রাণিত করে,<br />তাহলে আমাকে একটি ছোট চা উপহার পাঠান!</p>
+
+    <button class="action-button" onclick="handleDonate()">UPI দিয়ে দান করুন</button>
+
+    <div id="upi-link-container">
+      <p>দান সম্পূর্ণ করতে আপনাকে আপনার UPI অ্যাপে পাঠানো হবে:</p>
+      <a href="upi://pay?pa=spmohq@oksbi&cu=INR" id="upi-link">UPI দিয়ে পেমেন্ট করুন</a>
+    </div>
+
+    <div id="qr-container">
+      <p>অথবা এই QR কোডটি স্ক্যান করুন:</p>
+      <!-- Make sure the QR code image "spm-gpay.jpeg" is in the same folder -->
+      <img src="spm-gpay.jpeg" alt="UPI QR Code" />
+    </div>
+
+    <div id="instruction">
+      💬 পেমেন্ট সম্পূর্ণ করার পরে, অনুগ্রহ করে আপনার পুরো নাম <strong>+91-9876543210</strong> নম্বরে হোয়াটসঅ্যাপ করুন। আমরা শীঘ্রই আপনার অ্যাক্সেস সক্রিয় করব।
+    </div>
+  </div>
+
+  <script>
+    function isMobileDevice() {
+      // This function's logic remains unchanged.
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+
+    function handleDonate() {
+      // This function's logic remains unchanged.
+      const upiLinkSection = document.getElementById("upi-link-container");
+      const qrSection = document.getElementById("qr-container");
+      const instruction = document.getElementById("instruction");
+      const donateButton = document.querySelector('.action-button');
+
+      if (isMobileDevice()) {
+        upiLinkSection.style.display = "block";
+        upiLinkSection.scrollIntoView({ behavior: "smooth", block: "center" });
+      } else {
+        qrSection.style.display = "block";
+        qrSection.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      
+      // Hide the initial donate button after click to improve user flow
+      donateButton.style.display = 'none';
+
+      // Show instruction after a very short delay to allow for scroll
+      setTimeout(() => {
+        instruction.style.display = "block";
+      }, 300);
+    }
+  </script>
+
+  <!-- Google Translate Script -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'bn',
+        includedLanguages: 'en,hi,bn,gu,kn,ml,mr,pa,ta,te',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: true
+      }, 'google_translate_element');
+    }
+  </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>
