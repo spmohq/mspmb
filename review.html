@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern Action Plan Critique Tool</title>
+  
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+  <style>
+    :root {
+      --accent-color: #00e5ff;
+      --accent-hover-color: #00b8d4;
+      --light-text-color: #e0e0e0;
+      --dark-text-color: #333;
+      --panel-bg-color: rgba(255, 255, 255, 0.1);
+      --border-color: rgba(255, 255, 255, 0.2);
+      --border-radius: 16px;
+      --box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--light-text-color);
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      padding: 1.5rem;
+      overflow-x: hidden; /* Prevents horizontal scroll from sticky button */
+    }
+
+    .app-container {
+      display: flex;
+      flex: 1;
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-direction: column; /* Mobile first */
+    }
+    
+    /* Glassmorphism Panel Style */
+    .panel {
+      background: var(--panel-bg-color);
+      box-shadow: var(--box-shadow);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: var(--border-radius);
+      border: 1px solid var(--border-color);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1, h2, h3 {
+      text-align: center;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    h1 {
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+    }
+    h2 {
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+    }
+    h3 {
+      font-weight: 300;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    label {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      font-size: 1rem;
+      font-family: 'Poppins', sans-serif;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      background: rgba(0,0,0,0.2);
+      color: var(--light-text-color);
+      transition: all 0.3s ease;
+    }
+
+    input[type="text"]::placeholder {
+      color: rgba(255,255,255,0.5);
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.3);
+    }
+
+    .preview-panel .output-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    #prompt-output {
+      flex: 1;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1.5rem;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      min-height: 250px;
+      color: #fff;
+    }
+
+    .action-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      background-color: var(--accent-color);
+      color: var(--dark-text-color);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      padding: 0.85rem 1rem;
+      font-size: 1rem;
+      border-radius: 10px;
+      margin-top: 1.5rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .action-button:hover {
+      background-color: var(--accent-hover-color);
+      box-shadow: 0 4px 15px rgba(0, 229, 255, 0.4);
+      transform: translateY(-2px);
+    }
+    
+    #translate-btn {
+        position: fixed;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        z-index: 1000;
+        background-color: var(--accent-color);
+        color: var(--dark-text-color);
+        writing-mode: vertical-rl;
+        padding: 1.2rem 0.6rem;
+        border-radius: 10px 0 0 10px;
+        box-shadow: -2px 2px 8px rgba(0,0,0,0.3);
+        margin: 0;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        border: none;
+        transition: all 0.3s ease;
+    }
+    #translate-btn:hover {
+        background-color: var(--accent-hover-color);
+        padding-right: 0.8rem;
+    }
+    #translate-btn .fa-solid {
+        transform: rotate(90deg); /* Align icon correctly */
+    }
+
+    #google_translate_element, .skiptranslate { display: none !important; }
+    body { top: 0 !important; }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.6);
+    }
+
+    @media (min-width: 768px) {
+      .app-container {
+        flex-direction: row;
+      }
+      .panel {
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <div id="google_translate_element"></div>
+  <button id="translate-btn" onclick="activateGoogleTranslate()">
+    <i class="fa-solid fa-language"></i> Translate
+  </button>
+
+  <div class="app-container">
+    <!-- Left Panel: User Controls -->
+    <div class="panel controls-panel">
+      <h1>Action Plan Critique</h1>
+      <h3>Reveal Hidden Gaps. Refine Your Action Plan.</h3>
+      <label for="goal-input">Enter your goal:</label>
+      <input 
+        type="text" 
+        id="goal-input" 
+        placeholder="e.g., launch a successful podcast" 
+        oninput="updatePreview()" 
+        autofocus
+      />
+    </div>
+
+    <!-- Right Panel: Live Preview -->
+    <div class="panel preview-panel">
+      <h2>Live Prompt Preview</h2>
+      <div class="output-wrapper">
+          <div id="prompt-output"></div>
+          <button class="action-button" onclick="copyPrompt()">
+            <i class="fa-solid fa-copy"></i>
+            Copy Prompt
+          </button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Copyright &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All rights reserved.
+  </footer>
+
+  <script>
+    const goalInput = document.getElementById("goal-input");
+    const outputDiv = document.getElementById("prompt-output");
+
+    function updatePreview() {
+      // Use the input value, or a placeholder if it's empty
+      const goal = goalInput.value.trim() || "[your goal here]";
+
+      const prompt = `I want to ${goal}.
+The attached file contains my action plan for achieving this goal.
+Please carefully review it and act as a critic. I’d like your honest, constructive feedback.
+
+Specifically, please answer the following:
+1. What are the strengths and weaknesses of my ideas and action plans?
+2. How realistic or unrealistic are they, and why?
+3. What important realities might I be overlooking?
+   - Which of these are due to my lack of awareness?
+   - Which are intentionally ignored in favor of other priorities?
+4. Please especially focus on identifying any assumptions I may have made that could limit the success of my plan.`;
+
+      outputDiv.innerText = prompt;
+    }
+
+    function copyPrompt() {
+      const text = outputDiv.innerText;
+      if (!text) return;
+
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Prompt copied to clipboard!");
+      }).catch(err => {
+        console.error("Failed to copy text: ", err);
+        alert("Failed to copy prompt. Please check your browser permissions.");
+      });
+    }
+    
+    let isTranslateScriptLoaded = false;
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+    }
+
+    function activateGoogleTranslate() {
+      if (isTranslateScriptLoaded) return;
+      const script = document.createElement('script');
+      script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      script.async = true;
+      document.body.appendChild(script);
+      isTranslateScriptLoaded = true;
+      document.getElementById('translate-btn').style.display = 'none';
+    }
+
+    document.addEventListener("DOMContentLoaded", updatePreview);
+  </script>
+</body>
+</html>
