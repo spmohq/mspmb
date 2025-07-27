@@ -186,6 +186,7 @@
     }
 
     #google_translate_element, .skiptranslate { display: none !important; }
+    iframe.goog-te-banner-frame { display: none !important; }
     body { top: 0 !important; }
 
     footer {
@@ -208,7 +209,9 @@
 <body>
   
   <div id="google_translate_element"></div>
-  <button id="translate-btn" onclick="activateGoogleTranslate()">
+  
+  <!-- The onclick attribute has been removed from here -->
+  <button id="translate-btn">
     <i class="fa-solid fa-language"></i> Translate
   </button>
 
@@ -241,7 +244,7 @@
   </div>
 
   <footer>
-    Copyright &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All rights reserved.
+    Copyright © <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All rights reserved.
   </footer>
 
   <script>
@@ -249,9 +252,7 @@
     const outputDiv = document.getElementById("prompt-output");
 
     function updatePreview() {
-      // Use the input value, or a placeholder if it's empty
       const goal = goalInput.value.trim() || "[your goal here]";
-
       const prompt = `I want to ${goal}.
 The attached file contains my action plan for achieving this goal.
 Please carefully review it and act as a critic. I’d like your honest, constructive feedback.
@@ -263,14 +264,12 @@ Specifically, please answer the following:
    - Which of these are due to my lack of awareness?
    - Which are intentionally ignored in favor of other priorities?
 4. Please especially focus on identifying any assumptions I may have made that could limit the success of my plan.`;
-
       outputDiv.innerText = prompt;
     }
 
     function copyPrompt() {
       const text = outputDiv.innerText;
       if (!text) return;
-
       navigator.clipboard.writeText(text).then(() => {
         alert("Prompt copied to clipboard!");
       }).catch(err => {
@@ -294,7 +293,14 @@ Specifically, please answer the following:
       document.getElementById('translate-btn').style.display = 'none';
     }
 
-    document.addEventListener("DOMContentLoaded", updatePreview);
+    // Initialize listeners when the DOM is fully loaded
+    document.addEventListener("DOMContentLoaded", () => {
+      updatePreview(); // Show the initial prompt
+      
+      // *** THIS IS THE FIX ***
+      // Attach the event listener for the translate button using JavaScript
+      document.getElementById('translate-btn').addEventListener('click', activateGoogleTranslate);
+    });
   </script>
 </body>
 </html>
