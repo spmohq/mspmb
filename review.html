@@ -28,6 +28,7 @@
       padding: 0;
     }
 
+    /* Prevents Google Translate's top bar from pushing content down */
     html {
       top: 0 !important;
     }
@@ -121,11 +122,13 @@
     #translate-btn .fa-solid { transform: rotate(90deg); }
 
     #google_translate_element {
+      /* This element is now only used as a placeholder for the script to attach to. */
+      /* It will be hidden unless Google makes it visible. */
       position: fixed;
       top: 1rem;
       right: 1rem;
       z-index: 1002;
-      display: block;
+      display: block; /* The translate script controls its visibility */
     }
 
     footer {
@@ -169,13 +172,14 @@
   </div>
 
   <footer>
-  <div style="padding-top: 10px;"> </div>
+    <div style="padding-top: 10px;">&nbsp;</div>
     Copyright &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All rights reserved.
   </footer>
 
   <script>
     const goalInput = document.getElementById("goal-input");
     const outputDiv = document.getElementById("prompt-output");
+    const translateBtn = document.getElementById('translate-btn');
 
     function updatePreview() {
       const goal = goalInput.value.trim() || "[your goal here]";
@@ -219,15 +223,30 @@ Specifically, please answer the following:
 
       isTranslateScriptLoaded = true;
 
-      // Hide the translate button after a short delay (allow widget to appear)
-      setTimeout(() => {
-        document.getElementById('translate-btn').style.display = 'none';
-      }, 2000);
+      // Hide the custom translate button since the widget will be active
+      if(translateBtn) {
+        translateBtn.style.display = 'none';
+      }
     }
 
+    // This is the main logic that runs when the page is loaded
     document.addEventListener("DOMContentLoaded", () => {
-      updatePreview();
-      document.getElementById('translate-btn').addEventListener('click', activateGoogleTranslate);
+      // Always update the preview on load
+      updatePreview(); 
+      
+      // *** SOLUTION LOGIC STARTS HERE ***
+
+      // Check if the URL hash requests an automatic translation
+      if (window.location.hash.includes("#googtrans")) {
+        // If yes, load the Google Translate script immediately.
+        activateGoogleTranslate();
+      } else {
+        // If no, just set up the click listener for the manual translate button.
+        if (translateBtn) {
+            translateBtn.addEventListener('click', activateGoogleTranslate);
+        }
+      }
+      // *** SOLUTION LOGIC ENDS HERE ***
     });
   </script>
 </body>
