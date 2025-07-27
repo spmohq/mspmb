@@ -21,14 +21,13 @@
       --border-radius: 16px;
       --box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     }
-    
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-    
-    /* CRITICAL FIX: This prevents Google's bar from pushing your page down */
+
     html {
       top: 0 !important;
     }
@@ -41,7 +40,6 @@
       flex-direction: column;
       min-height: 100vh;
       padding: 1.5rem;
-      /* CRITICAL FIX: Removed 'overflow-x: hidden' which was hiding the translate bar */
     }
 
     .app-container {
@@ -51,10 +49,10 @@
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
-      flex-direction: column; /* Mobile first */
-      z-index: 1; /* Ensure content is above the background */
+      flex-direction: column;
+      z-index: 1;
     }
-    
+
     .panel {
       background: var(--panel-bg-color);
       box-shadow: var(--box-shadow);
@@ -86,7 +84,7 @@
     }
 
     .preview-panel .output-wrapper { flex: 1; display: flex; flex-direction: column; }
-    
+
     #prompt-output {
       flex: 1; white-space: pre-wrap; word-wrap: break-word;
       background: rgba(0, 0, 0, 0.3); padding: 1.5rem;
@@ -107,10 +105,10 @@
       box-shadow: 0 4px 15px rgba(0, 229, 255, 0.4);
       transform: translateY(-2px);
     }
-    
+
     #translate-btn {
         position: fixed; top: 50%; right: 0;
-        transform: translateY(-50%); z-index: 1001; /* High z-index */
+        transform: translateY(-50%); z-index: 1001;
         background-color: var(--accent-color); color: var(--dark-text-color);
         writing-mode: vertical-rl; padding: 1.2rem 0.6rem;
         border-radius: 10px 0 0 10px; box-shadow: -2px 2px 8px rgba(0,0,0,0.3);
@@ -122,9 +120,14 @@
     }
     #translate-btn .fa-solid { transform: rotate(90deg); }
 
-    /* This element is the anchor for the script, it must exist but can be hidden */
-    #google_translate_element { display: none; }
-    
+    #google_translate_element {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1002;
+      display: block;
+    }
+
     footer {
       text-align: center; padding: 2rem 1rem 1rem; font-size: 0.875rem;
       color: rgba(255,255,255,0.6); z-index: 1;
@@ -137,7 +140,7 @@
   </style>
 </head>
 <body>
-  
+
   <div id="google_translate_element"></div>
   <button id="translate-btn">
     <i class="fa-solid fa-language"></i> Translate
@@ -163,7 +166,7 @@
   </div>
 
   <footer>
-    Copyright © <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All rights reserved.
+    Copyright &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All rights reserved.
   </footer>
 
   <script>
@@ -196,7 +199,7 @@ Specifically, please answer the following:
         alert("Failed to copy prompt. Please check your browser permissions.");
       });
     }
-    
+
     let isTranslateScriptLoaded = false;
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
@@ -204,14 +207,18 @@ Specifically, please answer the following:
 
     function activateGoogleTranslate() {
       if (isTranslateScriptLoaded) return;
-      
+
       const script = document.createElement('script');
       script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
       script.async = true;
       document.body.appendChild(script);
-      
+
       isTranslateScriptLoaded = true;
-      document.getElementById('translate-btn').style.display = 'none';
+
+      // Hide the translate button after a short delay (allow widget to appear)
+      setTimeout(() => {
+        document.getElementById('translate-btn').style.display = 'none';
+      }, 2000);
     }
 
     document.addEventListener("DOMContentLoaded", () => {
