@@ -5,12 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Modern Action Plan Critique Tool</title>
   
-  <!-- Google Fonts: Poppins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Font Awesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
   <style>
@@ -30,6 +27,11 @@
       margin: 0;
       padding: 0;
     }
+    
+    /* CRITICAL FIX: This prevents Google's bar from pushing your page down */
+    html {
+      top: 0 !important;
+    }
 
     body {
       font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -39,7 +41,7 @@
       flex-direction: column;
       min-height: 100vh;
       padding: 1.5rem;
-      overflow-x: hidden; /* Prevents horizontal scroll from sticky button */
+      /* CRITICAL FIX: Removed 'overflow-x: hidden' which was hiding the translate bar */
     }
 
     .app-container {
@@ -50,9 +52,9 @@
       max-width: 1200px;
       margin: 0 auto;
       flex-direction: column; /* Mobile first */
+      z-index: 1; /* Ensure content is above the background */
     }
     
-    /* Glassmorphism Panel Style */
     .panel {
       background: var(--panel-bg-color);
       box-shadow: var(--box-shadow);
@@ -65,91 +67,41 @@
       flex-direction: column;
     }
 
-    h1, h2, h3 {
-      text-align: center;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
-    
-    h1 {
-        font-weight: 700;
-        margin-bottom: 0.25rem;
-    }
-    h2 {
-        font-weight: 600;
-        margin-bottom: 1.5rem;
-    }
-    h3 {
-      font-weight: 300;
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
-    }
-
-    label {
-        font-weight: 600;
-        margin-bottom: 0.5rem;
-        font-size: 1.1rem;
-    }
+    h1, h2, h3 { text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+    h1 { font-weight: 700; margin-bottom: 0.25rem; }
+    h2 { font-weight: 600; margin-bottom: 1.5rem; }
+    h3 { font-weight: 300; font-size: 1.1rem; margin-bottom: 2rem; }
+    label { font-weight: 600; margin-bottom: 0.5rem; font-size: 1.1rem; }
 
     input[type="text"] {
-      width: 100%;
-      padding: 0.85rem 1rem;
-      font-size: 1rem;
-      font-family: 'Poppins', sans-serif;
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
-      background: rgba(0,0,0,0.2);
-      color: var(--light-text-color);
-      transition: all 0.3s ease;
+      width: 100%; padding: 0.85rem 1rem; font-size: 1rem;
+      font-family: 'Poppins', sans-serif; border: 1px solid var(--border-color);
+      border-radius: 10px; background: rgba(0,0,0,0.2);
+      color: var(--light-text-color); transition: all 0.3s ease;
     }
-
-    input[type="text"]::placeholder {
-      color: rgba(255,255,255,0.5);
-    }
-
+    input[type="text"]::placeholder { color: rgba(255,255,255,0.5); }
     input[type="text"]:focus {
-      outline: none;
-      border-color: var(--accent-color);
+      outline: none; border-color: var(--accent-color);
       box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.3);
     }
 
-    .preview-panel .output-wrapper {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
+    .preview-panel .output-wrapper { flex: 1; display: flex; flex-direction: column; }
     
     #prompt-output {
-      flex: 1;
-      white-space: pre-wrap;
-      word-wrap: break-word;
-      background: rgba(0, 0, 0, 0.3);
-      padding: 1.5rem;
-      border-radius: 10px;
-      font-size: 0.95rem;
-      line-height: 1.7;
-      min-height: 250px;
-      color: #fff;
+      flex: 1; white-space: pre-wrap; word-wrap: break-word;
+      background: rgba(0, 0, 0, 0.3); padding: 1.5rem;
+      border-radius: 10px; font-size: 0.95rem; line-height: 1.7;
+      min-height: 250px; color: #fff;
     }
 
     .action-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-      background-color: var(--accent-color);
-      color: var(--dark-text-color);
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      padding: 0.85rem 1rem;
-      font-size: 1rem;
-      border-radius: 10px;
-      margin-top: 1.5rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 0.75rem; background-color: var(--accent-color);
+      color: var(--dark-text-color); border: none; cursor: pointer;
+      transition: all 0.3s ease; padding: 0.85rem 1rem;
+      font-size: 1rem; border-radius: 10px; margin-top: 1.5rem;
+      font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
     }
-
     .action-button:hover {
       background-color: var(--accent-hover-color);
       box-shadow: 0 4px 15px rgba(0, 229, 255, 0.4);
@@ -157,88 +109,55 @@
     }
     
     #translate-btn {
-        position: fixed;
-        top: 50%;
-        right: 0;
-        transform: translateY(-50%);
-        z-index: 1000;
-        background-color: var(--accent-color);
-        color: var(--dark-text-color);
-        writing-mode: vertical-rl;
-        padding: 1.2rem 0.6rem;
-        border-radius: 10px 0 0 10px;
-        box-shadow: -2px 2px 8px rgba(0,0,0,0.3);
-        margin: 0;
-        font-weight: 600;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        cursor: pointer;
-        border: none;
-        transition: all 0.3s ease;
+        position: fixed; top: 50%; right: 0;
+        transform: translateY(-50%); z-index: 1001; /* High z-index */
+        background-color: var(--accent-color); color: var(--dark-text-color);
+        writing-mode: vertical-rl; padding: 1.2rem 0.6rem;
+        border-radius: 10px 0 0 10px; box-shadow: -2px 2px 8px rgba(0,0,0,0.3);
+        margin: 0; font-weight: 600; display: flex; align-items: center;
+        gap: 0.5rem; cursor: pointer; border: none; transition: all 0.3s ease;
     }
     #translate-btn:hover {
-        background-color: var(--accent-hover-color);
-        padding-right: 0.8rem;
+        background-color: var(--accent-hover-color); padding-right: 0.8rem;
     }
-    #translate-btn .fa-solid {
-        transform: rotate(90deg); /* Align icon correctly */
-    }
+    #translate-btn .fa-solid { transform: rotate(90deg); }
 
-    #google_translate_element, .skiptranslate { display: none !important; }
-    iframe.goog-te-banner-frame { display: none !important; }
-    body { top: 0 !important; }
-
+    /* This element is the anchor for the script, it must exist but can be hidden */
+    #google_translate_element { display: none; }
+    
     footer {
-      text-align: center;
-      padding: 2rem 1rem 1rem;
-      font-size: 0.875rem;
-      color: rgba(255,255,255,0.6);
+      text-align: center; padding: 2rem 1rem 1rem; font-size: 0.875rem;
+      color: rgba(255,255,255,0.6); z-index: 1;
     }
 
     @media (min-width: 768px) {
-      .app-container {
-        flex-direction: row;
-      }
-      .panel {
-        flex: 1;
-      }
+      .app-container { flex-direction: row; }
+      .panel { flex: 1; }
     }
   </style>
 </head>
 <body>
   
   <div id="google_translate_element"></div>
-  
-  <!-- The onclick attribute has been removed from here -->
   <button id="translate-btn">
     <i class="fa-solid fa-language"></i> Translate
   </button>
 
   <div class="app-container">
-    <!-- Left Panel: User Controls -->
     <div class="panel controls-panel">
       <h1>Action Plan Critique</h1>
       <h3>Reveal Hidden Gaps. Refine Your Action Plan.</h3>
       <label for="goal-input">Enter your goal:</label>
-      <input 
-        type="text" 
-        id="goal-input" 
-        placeholder="e.g., launch a successful podcast" 
-        oninput="updatePreview()" 
-        autofocus
-      />
+      <input type="text" id="goal-input" placeholder="e.g., launch a successful podcast" oninput="updatePreview()" autofocus />
     </div>
-
-    <!-- Right Panel: Live Preview -->
     <div class="panel preview-panel">
       <h2>Live Prompt Preview</h2>
       <div class="output-wrapper">
-          <div id="prompt-output"></div>
-          <button class="action-button" onclick="copyPrompt()">
-            <i class="fa-solid fa-copy"></i>
-            Copy Prompt
-          </button>
+        <div id="prompt-output"></div>
+        <button class="action-button" onclick="copyPrompt()">
+          <i class="fa-solid fa-copy"></i>
+          Copy Prompt
+        </button>
       </div>
     </div>
   </div>
@@ -285,20 +204,18 @@ Specifically, please answer the following:
 
     function activateGoogleTranslate() {
       if (isTranslateScriptLoaded) return;
+      
       const script = document.createElement('script');
-      script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
       script.async = true;
       document.body.appendChild(script);
+      
       isTranslateScriptLoaded = true;
       document.getElementById('translate-btn').style.display = 'none';
     }
 
-    // Initialize listeners when the DOM is fully loaded
     document.addEventListener("DOMContentLoaded", () => {
-      updatePreview(); // Show the initial prompt
-      
-      // *** THIS IS THE FIX ***
-      // Attach the event listener for the translate button using JavaScript
+      updatePreview();
       document.getElementById('translate-btn').addEventListener('click', activateGoogleTranslate);
     });
   </script>
