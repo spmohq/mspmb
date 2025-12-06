@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to use The Prerequisite Learning System App?</title>
+    <link rel="icon" href="spm.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <style>
+
+/* Prevents Google's top bar from pushing the page down */
+html {
+    top: 0 !important;
+}
+
+#translate-btn {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 1001;
+    background-color: #007bff;
+    color: white;
+    writing-mode: vertical-rl;
+    padding: 1.2rem 0.6rem;
+    border-radius: 10px 0 0 10px;
+    box-shadow: -2px 2px 8px rgba(0,0,0,0.2);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+#translate-btn:hover {
+    background-color: #0056b3;
+    padding-right: 0.8rem;
+}
+
+#translate-btn .fa-solid {
+    transform: rotate(90deg);
+}
+
+/* This is the container Google's script will use */
+#google_translate_element {
+    display: none; 
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1002;
+}
+
+    body {
+      -webkit-user-select: none; /* Safari */
+      -ms-user-select: none; /* IE 10+ and Edge */
+      user-select: none; /* Standard syntax */
+    }
+
+    textarea, input {
+      -webkit-user-select: text; /* Safari */
+      -ms-user-select: text; /* IE 10+ and Edge */
+      user-select: text; /* Standard syntax */
+    }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 20px 10px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .content-box {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            text-align: left;
+            box-sizing: border-box;
+        }
+        .content-box h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            font-size: 1.5em;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        .content-box p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .content-box strong {
+            color: #34495e;
+        }
+        .content-box a {
+            color: #2980b9;
+            text-decoration: none;
+        }
+        .content-box a:hover {
+            text-decoration: underline;
+        }
+        .footer {
+            background-color: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 15px 10px;
+            font-size: 0.9em;
+            box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+            margin-top: auto; /* Pushes the footer to the bottom */
+        }
+        .footer p {
+            margin: 0;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5em;
+            }
+            .content-box {
+                padding: 20px;
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- The sticky button the user can click -->
+<button id="translate-btn">
+    <i class="fa-solid fa-language"></i> Translate
+</button>
+
+<!-- An empty div that Google Translate's script will use -->
+<div id="google_translate_element"></div>
+
+    <header>
+        <h1>How to use The Prerequisite Learning System App?</h1>
+    </header>
+    <div class="container">
+        <div class="content-box">
+            <h2>Create Your Blog's Feature Image</h2>
+            <p><strong>Step#1:</strong> Go to <a href="https://app.spm.in.net/" target="_blank" rel="noopener noreferrer">The Prerequisite Learning System App</a></p>
+            <p><strong>Step#2:</strong> Enter your <strong>Age</strong> in the first input box.</p>
+            <p><strong>Step#3:</strong> Type your <strong>Preferred Language</strong>.</p>
+            <p><strong>Step#4:</strong> Paste or type the <strong>Topic You Want to Understand</strong> into the topic box.</p>
+            <p><strong>Step#5:</strong> Copy the customized prompt the app creates for you.</p>
+            <p><strong>Step#6:</strong> Paste that prompt into <strong>ChatGPT</strong> (or any AI model you use). Hit “Enter.”</p>
+            <p><strong>Step#6:</strong> Read the response — it will reveal your missing prerequisites, teach them to you, give you a study plan, and re-explain your topic clearly.</p>
+            <p>…that’s it. 🎉</p>
+        </div>
+    </div>
+    <footer class="footer">
+      <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.</p>
+    </footer>
+
+<script>
+// This function must be globally available for the Google script's callback
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+  
+  // Show Google's widget and hide our custom button once initialized
+  const translateElement = document.getElementById('google_translate_element');
+  if (translateElement) translateElement.style.display = 'block';
+
+  const customTranslateBtn = document.getElementById('translate-btn');
+  if (customTranslateBtn) customTranslateBtn.style.display = 'none';
+}
+
+// This function dynamically loads the Google Translate script
+function activateGoogleTranslate() {
+  // Prevent loading the script multiple times
+  if (document.querySelector('script[src*="translate.google.com"]')) {
+    return;
+  }
+  const script = document.createElement('script');
+  script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+  script.async = true;
+  document.body.appendChild(script);
+}
+
+// Main logic runs after the page content has loaded
+document.addEventListener("DOMContentLoaded", () => {
+    const translateBtn = document.getElementById('translate-btn');
+
+    // **This logic makes the URL work!**
+    // Check if the URL hash requests an automatic translation
+    if (window.location.hash.includes("#googtrans")) {
+        // If yes, load the Google Translate script immediately.
+        activateGoogleTranslate();
+    } else {
+        // If no, and the button exists, set up the click listener for it.
+        if (translateBtn) {
+            translateBtn.addEventListener('click', activateGoogleTranslate);
+        }
+    }
+});
+</script>
+
+  <script>
+    // Your existing script for the tool's functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      // ... content of your existing script ...
+    });
+  </script>
+
+  <!-- START: Protection Script -->
+  <script>
+    // Disable right-click context menu
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+      // Optional: You can alert the user if you want
+      // alert('Right-clicking is disabled on this page.');
+    });
+
+    // Disable keyboard shortcuts for developer tools and view source
+    document.addEventListener('keydown', function(e) {
+      // Disable F12
+      if (e.key === 'F12' || e.keyCode === 123) {
+        e.preventDefault();
+      }
+      // Disable Ctrl+Shift+I
+      if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.keyCode === 73)) {
+        e.preventDefault();
+      }
+      // Disable Ctrl+Shift+C
+      if (e.ctrlKey && e.shiftKey && (e.key === 'C' || e.key === 'c' || e.keyCode === 67)) {
+        e.preventDefault();
+      }
+      // Disable Ctrl+Shift+J
+      if (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j' || e.keyCode === 74)) {
+        e.preventDefault();
+      }
+      // Disable Ctrl+S (Save)
+      if (e.ctrlKey && (e.key === 'S' || e.key === 's' || e.keyCode === 83)) {
+        e.preventDefault();
+      }
+      // Disable Ctrl+U (View Source)
+      if (e.ctrlKey && (e.key === 'U' || e.key === 'u' || e.keyCode === 85)) {
+        e.preventDefault();
+      }
+    });
+  </script>
+  <!-- END: Protection Script -->
+
+</body>
+</html>
