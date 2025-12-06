@@ -1,194 +1,567 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile | Siva Prasad Mukherjee</title>
-    <link rel="icon" href="spm.ico" />
-    <style>
-        /* Basic Reset & Body Styles */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #e0e0e0;
-            color: #1c1c1e;
-            display: grid;
-            place-items: center;
-            min-height: 100vh;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learning Hard Topics Just Got Easier | SelfLearningSkills.online</title>
+<link rel="icon" href="spm.ico" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+<!-- Import Noto Sans Bengali from Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+    /* --- 1. Basic Setup & Minimalist Foundation --- */
+
+/* Prevents Google's top bar from pushing the page down */
+html {
+    top: 0 !important;
+}
+
+#translate-btn {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 1001;
+    background-color: #007bff;
+    color: white;
+    writing-mode: vertical-rl;
+    padding: 1.2rem 0.6rem;
+    border-radius: 10px 0 0 10px;
+    box-shadow: -2px 2px 8px rgba(0,0,0,0.2);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+#translate-btn:hover {
+    background-color: #0056b3;
+    padding-right: 0.8rem;
+}
+
+#translate-btn .fa-solid {
+    transform: rotate(90deg);
+}
+
+/* This is the container Google's script will use */
+#google_translate_element {
+    display: none; 
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1002;
+}
+
+    body {
+      -webkit-user-select: none; /* Safari */
+      -ms-user-select: none; /* IE 10+ and Edge */
+      user-select: none; /* Standard syntax */
+    }
+
+    textarea, input {
+      -webkit-user-select: text; /* Safari */
+      -ms-user-select: text; /* IE 10+ and Edge */
+      user-select: text; /* Standard syntax */
+    }
+    
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        background-color: #ffffff; 
+        font-family: "Noto Sans Bengali", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        font-size: 1.15rem; 
+        line-height: 1.6; 
+        color: #333; 
+        display: block;
+        min-height: 100vh;
+    }
+
+    /* --- 2. Top Header Navigation (Updated Alignment) --- */
+
+    .site-nav {
+        width: 100%;
+        background-color: #fff;
+        border-bottom: 1px solid #eee; 
+    }
+
+    /* The inner container that matches the Body width/margins */
+    .site-nav-container {
+        width: 90%; 
+        max-width: 800px; /* MATCHES .container max-width */
+        margin: 0 auto;   /* Centers it exactly like .container */
+        padding: 1rem 0;  /* Vertical padding only */
+        
+        display: flex;
+        justify-content: space-between; /* Pushes Logo to Left, Links to Right */
+        align-items: center;
+    }
+
+    .nav-logo {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #2ea44f; 
+        letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 1.5rem;
+    }
+
+    .nav-links a {
+        color: #555;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .nav-links a:hover {
+        color: #2ea44f;
+    }
+
+    /* --- 3. Layout & Responsive Container --- */
+
+    .container {
+        width: 90%; 
+        max-width: 800px; 
+        margin: 0 auto; 
+        padding: 1rem 0 3rem 0; 
+    }
+
+    /* --- 4. Typography & Content Styling --- */
+
+    h1, h2, h3 {
+        line-height: 1.3; 
+        margin-bottom: 1rem;
+        text-align: left;
+        font-weight: 700; 
+        color: #1f2328;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+        margin-top: 2.5rem;
+    }
+    
+    h3 {
+        font-size: 1.4rem;
+        margin-top: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    p {
+        margin-bottom: 1.5rem;
+        text-align: left;
+    }
+
+    ul {
+        margin-bottom: 1.5rem;
+        padding-left: 1.5rem;
+        text-align: left;
+    }
+
+    li {
+        margin-bottom: 0.5rem;
+    }
+
+    hr {
+        border: 0;
+        border-top: 1px solid #eee;
+        margin: 2rem 0;
+    }
+
+    a {
+        color: #0969da; 
+        text-decoration: none; 
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    /* --- NEW: Blockquote Styling --- */
+    blockquote {
+        margin: 2rem 0;
+        padding-left: 1.25rem;
+        border-left: 4px solid #d0d7de; /* Thick light grey vertical bar */
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #24292f;   /* Dark grey text */
+        line-height: 1.5;
+        font-style: italic;
+        background-color: #fafafa;
+        padding: 1rem;
+        border-radius: 0 4px 4px 0;
+    }
+
+    /* --- 5. Image Styling --- */
+    .responsive-image {
+        display: block; 
+        width: 100%;    
+        height: auto;   
+        margin-bottom: 2rem; 
+        border-bottom: 1px solid #eee; 
+        padding-bottom: 1.5rem; 
+    }
+
+    /* --- 6. Page Header & Footer --- */
+
+    .page-header {
+        padding-bottom: 0; 
+        margin-bottom: 2rem;
+        text-align: left;
+    }
+
+    .page-footer {
+        border-top: 1px solid #eee;
+        margin-top: 2rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        font-size: 0.9rem;
+        color: #777;
+        text-align: center;
+    }
+
+    /* --- 7. Author Box Styling --- */
+    .author-box {
+        background-color: #f6f8fa;
+        border: 1px solid #d0d7de;
+        padding: 1.25rem;
+        margin-bottom: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        border-radius: 6px;
+    }
+
+    .author-top {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .avatar-wrapper {
+        position: relative;
+        width: 55px;
+        height: 55px;
+    }
+
+    .avatar-wrapper img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        background-color: #ddd;
+        border: 1px solid #d0d7de;
+    }
+
+    .status-dot {
+        position: absolute;
+        bottom: 1px;
+        right: 1px;
+        width: 14px;
+        height: 14px;
+        background-color: #2da44e; 
+        border: 2px solid #f6f8fa;
+        border-radius: 50%;
+    }
+
+    .author-info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+
+    .author-name {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #050d16;
+        margin-bottom: 0.1rem;
+        line-height: 1;
+    }
+
+    .follow-btn {
+        background-color: #2ea44f;
+        color: white !important; 
+        border: none;
+        border-radius: 6px;
+        padding: 4px 12px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: inherit;
+        text-decoration: none !important; 
+        display: inline-block;
+        transition: background-color 0.2s;
+    }
+
+    .follow-btn:hover {
+        background-color: #2c974b;
+        text-decoration: none;
+    }
+
+    .author-meta {
+        font-size: 0.9rem;
+        color: #57606a;
+        line-height: 1.5;
+    }
+
+    /* --- 8. Mobile Responsiveness --- */
+
+    @media (max-width: 768px) {
+        
+        .site-nav-container {
+            flex-direction: column; 
+            gap: 1rem;
         }
 
-        .card-wrapper {
-            width: 100%;
-            max-width: 580px;
-        }
-
-        /* Container for content */
-        .container {
-            width: 100%;
-            padding: 24px;
-            background-color: #fff;
-            border-radius: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            box-sizing: border-box; /* Ensures padding is included in width */
-        }
-
-        /* Header Styles */
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .icon-btn {
-            background: none;
-            border: none;
-            padding: 0;
-            cursor: pointer;
-            color: #333;
-            width: 24px;
-            height: 24px;
-        }
-
-        .icon-btn.asterisk {
-            font-size: 32px;
-            font-weight: bold;
-            line-height: 1;
-        }
-
-        /* Profile Picture */
-        .profile-pic {
-            width: 96px;
-            height: 96px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 16px;
-        }
-
-        /* Typography */
         h1 {
-            font-size: 1.75em;
-            margin: 0 0 8px;
-            color: #1c1c1e;
-            font-weight: 700;
+            font-size: 2.2rem;
         }
 
-        .bio {
-            font-size: 1em;
-            color: #333;
-            line-height: 1.5;
-            margin: 0 auto 24px;
-            max-width: 450px;
+        h2 {
+            font-size: 1.75rem;
         }
         
-        /* Social Link */
-        .social-link {
-            display: inline-block;
-            margin-bottom: 24px;
-            color: #1c1c1e;
-            transition: transform 0.2s ease;
+        .container {
+            padding: 1.5rem 0;
         }
 
-        .social-link:hover {
-            transform: scale(1.1);
+        .responsive-image {
+            margin-bottom: 1.5rem; 
+            padding-bottom: 1rem; 
         }
+    }
 
-        /* Main Link Button */
-        .main-link {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #2c2c2e;
-            color: #fff;
-            text-decoration: none;
-            padding: 16px 20px;
-            border-radius: 12px;
-            font-weight: 600;
-            transition: background-color 0.2s ease, transform 0.2s ease;
-        }
-
-        .main-link:hover {
-            background-color: #3a3a3c;
-            transform: translateY(-2px);
-        }
-
-        /* Footer Styles */
-        .page-footer {
-            margin-top: 30px;
-            font-size: 0.85em;
-            color: #636366;
-            text-align: center;
-        }
-
-        .page-footer a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .page-footer a:hover {
-            text-decoration: underline;
-        }
-
-        .page-footer .separator {
-            margin: 0 8px;
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 600px) {
-            body {
-                padding: 10px;
-            }
-            .container {
-                padding: 20px;
-            }
-            h1 {
-                font-size: 1.5em;
-            }
-            .bio {
-                font-size: 0.95em;
-            }
-        }
-    </style>
+</style>
 </head>
 <body>
-    <div class="card-wrapper">
-        <div class="container">
-            <header class="card-header">
 
-            </header>
-
-            <main>
-                <img src="name.jpg" alt="Profile picture of Siva Prasad Mukherjee" class="profile-pic">
-                <h1>Siva Prasad Mukherjee</h1>
-                <p class="bio">Sharing small tools that helped me — they might help you too. Quick, useful, built to fix real problems.</p>
-                
-<a href="https://x.com/spmukherjeein" class="social-link" aria-label="Twitter">
-    <svg height="32" width="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.901 1.153ZM17.61 20.644h2.039L6.486 3.24H4.298l13.312 17.404Z" fill="currentColor"/>
-    </svg>
-</a>
-                
-                <p><a href="https://docs.google.com/document/d/1YBXbn7ZZ0nzI61mYtfbWtUW5aRAR_W4mDODb2zqzCKA/edit?usp=sharing" class="main-link">
-                    <span>Free Strategic Promotion Plan</span>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="5.5" r="1.5"/>
-                        <circle cx="12" cy="12" r="1.5"/>
-                        <circle cx="12" cy="18.5" r="1.5"/>
-                    </svg>
-                </a></p>
-
-            <div style="padding-bottom: 15px;">&nbsp;</div>
-            </main>
+<!-- Header Section -->
+<nav class="site-nav">
+    <div class="site-nav-container">
+        <div class="nav-logo">SPM.in.net</div>
+        
+        <div class="nav-links">
+            <a href="#">App</a>
+            <a href="#">Help</a>
+            <a href="#">Support</a>
         </div>
-
-        <footer class="page-footer">
-            <p style="font-size:14px;" align="center">Copyright &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.</p>
-        </footer>
     </div>
+</nav>
+<!-- END Header Section -->
+
+<div class="container">
+<div style="padding-top: 10px;">&nbsp;</div>
+    <header class="page-header">
+        <h1>Learning Hard Topics Just Got Easier With This Tiny Prompt</h1>
+        <p>The Prerequisite Learning System</p>
+    </header>
+
+    <!-- Feature Image -->
+    <figure>
+        <!-- Replaced with a placeholder or keep existing class structure -->
+        <img src="feature.png" alt="Prerequisite Learning System Concept" class="responsive-image">
+    </figure>
+    <!-- End Feature Image -->
+
+    <main>
+    
+    <!-- Author Box -->
+    <div class="author-box">
+        <div class="author-top">
+            <div class="avatar-wrapper">
+                <img src="name.jpg" alt="Siva Prasad Mukherjee">
+                <span class="status-dot"></span>
+            </div>
+            <div class="author-info">
+                <h3 class="author-name" style="margin:0;">Siva Prasad Mukherjee</h3>
+                <a href="#" class="follow-btn">Connect with Siva</a>
+            </div>
+        </div>
+        <div class="author-meta">
+            Updated: November 21, 2025
+        </div>
+    </div>
+    <!-- END Author Box -->
+
+    <!--- Start Content --->
+        <p>I’ve been experimenting a lot with learning-design prompts lately, and honestly… it’s way more fun than it should be.</p>
+        
+        <p>One of those little tinkering sessions turned into the <strong>Prerequisite Learning System</strong>, a small but surprisingly helpful prompt that diagnoses why someone is struggling with a topic — and shows them how to finally understand it.</p>
+
+        <blockquote>
+            I love building tools that help me teach and write better.<br>
+            This is one of them.
+        </blockquote>
+
+        <h2>What This Prompt Does</h2>
+        <p>The Prerequisite Learning System is a lightweight, beginner-friendly teaching framework that helps people overcome the real reason learning feels hard: missing foundational concepts.</p>
+        <p>Here’s what it does for the user:</p>
+
+        <h3>1. Identifies Missing Foundations</h3>
+        <p>Most people aren’t “bad at learning.” They simply skipped a few key ideas somewhere along the way. This prompt breaks any topic down into its essential building blocks and highlights which ones the user is probably missing.</p>
+        
+        <blockquote>
+            It’s a quiet relief to finally hear,<br>
+            “Oh, this isn’t my fault — I just never learned that step.”
+        </blockquote>
+
+        <h3>2. Explains Prerequisites in Simple Language</h3>
+        <p>The system rewrites complex concepts into friendly, clean explanations tailored to the user’s age and preferred language.</p>
+        <p>No jargon. No shame. No condescension.</p>
+        <p>Just, “Here’s the part you needed before this made sense.”</p>
+
+        <h3>3. Gives a Mini Study Plan</h3>
+        <p>Most learners don’t need a 200-page textbook. They need a path. The prompt gives them a short, focused 3–5 step sequence for learning the missing prerequisites — something they can follow today, not someday.</p>
+        <p>It’s practical, not overwhelming.</p>
+
+        <h3>4. Rebuilds the Main Topic With Clarity</h3>
+        <p>Once the user understands the building blocks, the system circles back and re-explains the original topic — this time in a way that finally lands. It’s the moment when the fog lifts and learning feels easy again.</p>
+
+        <h2>How It Helps the Reader</h2>
+        <p>Here are the core insights the Prerequisite Learning System delivers:</p>
+        <ul>
+            <li><strong>Confidence Building:</strong> Struggle doesn’t equal stupidity. It means the ladder is missing a few rungs.</li>
+            <li><strong>Personalization:</strong> Explanations adjust to age, language, and knowledge level.</li>
+            <li><strong>Clarity Over Complexity:</strong> The system removes the noise and gives the learner exactly what they need next.</li>
+            <li><strong>Warm, Encouraging Tone:</strong> Because most people don’t need a lecture. They need a guide.</li>
+        </ul>
+
+        <h2>Why I Built It</h2>
+        <p>Honestly? I wanted a teaching tool for myself. 😄</p>
+        <p>I wanted something that could take any topic — from algebra to AI to business strategy — and break it into the layers people often skip without realizing it.</p>
+        <p>And yes, I also love building small, useful things for creators, students, and curious humans. We need more tools for learners built by people who actually care about learning.</p>
+
+        <h2>The Bottom Line</h2>
+        <p>If you want to help your audience learn faster, feel smarter, and stop getting stuck on confusing topics, give the Prerequisite Learning System prompt a try.</p>
+        
+        <p>It’s free. It’s simple. And it doesn’t track anything.</p>
+
+        <p>If you do, I’d genuinely love your feedback.</p>
+        <ul>
+            <li>Was it helpful?</li>
+            <li>Did it uncover the missing steps for you?</li>
+            <li>What should I add or improve?</li>
+        </ul>
+        <p>It’s version one. There’s so much room to grow.</p>
+
+        <hr>
+
+        <p><strong>A teacher is nothing without a learner.</strong><br>
+        If this helped you, consider joining my email list — nothing makes me happier than sharing useful tools with curious friends.</p>
+
+    <!--- End Content --->
+    </main>
+
+    <div style="padding-top: 30px;">&nbsp;</div>
+    <footer class="page-footer">
+        <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> SelfLearningSkills.online. All Rights Reserved.</p>
+    </footer>
+</div>
+
+<!-- The sticky button the user can click -->
+<button id="translate-btn">
+    <i class="fa-solid fa-language"></i> Translate
+</button>
+
+<!-- An empty div that Google Translate's script will use -->
+<div id="google_translate_element"></div>
+<script>
+// This function must be globally available for the Google script's callback
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+  
+  // Show Google's widget and hide our custom button once initialized
+  const translateElement = document.getElementById('google_translate_element');
+  if (translateElement) translateElement.style.display = 'block';
+
+  const customTranslateBtn = document.getElementById('translate-btn');
+  if (customTranslateBtn) customTranslateBtn.style.display = 'none';
+}
+
+// This function dynamically loads the Google Translate script
+function activateGoogleTranslate() {
+  // Prevent loading the script multiple times
+  if (document.querySelector('script[src*="translate.google.com"]')) {
+    return;
+  }
+  const script = document.createElement('script');
+  script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+  script.async = true;
+  document.body.appendChild(script);
+}
+
+// Main logic runs after the page content has loaded
+document.addEventListener("DOMContentLoaded", () => {
+    const translateBtn = document.getElementById('translate-btn');
+
+    // **This logic makes the URL work!**
+    // Check if the URL hash requests an automatic translation
+    if (window.location.hash.includes("#googtrans")) {
+        // If yes, load the Google Translate script immediately.
+        activateGoogleTranslate();
+    } else {
+        // If no, and the button exists, set up the click listener for it.
+        if (translateBtn) {
+            translateBtn.addEventListener('click', activateGoogleTranslate);
+        }
+    }
+});
+</script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // ... your existing code for updating prompts ...
+      updatePrompts();
+    });
+  </script>
+  
+  <!-- START: Protection Script - ADD THIS ENTIRE SCRIPT BLOCK -->
+  <script>
+    // Disable right-click context menu
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
+
+    // Disable keyboard shortcuts for developer tools and view source
+    document.addEventListener('keydown', function(e) {
+      // Disable F12
+      if (e.key === 'F12') {
+        e.preventDefault();
+      }
+      // Disable Ctrl+Shift+I
+      if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+        e.preventDefault();
+      }
+      // Disable Ctrl+S
+      if (e.ctrlKey && e.key === 'S') {
+        e.preventDefault();
+      }
+      // Disable Ctrl+U
+      if (e.ctrlKey && e.key === 'U') {
+        e.preventDefault();
+      }
+    });
+  </script>
 </body>
 </html>
-
-
-
