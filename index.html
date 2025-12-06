@@ -325,7 +325,26 @@ html {
         color: #57606a;
         line-height: 1.5;
     }
+             /* Social Icons */
+        .social-icons {
+            background-color: transparent;
+            margin-top: 3.5rem;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+            gap: 30px;
+    }
 
+        .social-icons a {
+            font-size: 1.6rem;
+            color: #222;
+            background-color: transparent;
+    }
+
+        .social-icons a:hover {
+            background-color: #d5d0ea;
+            color: #000;
+        }
     /* --- 8. Mobile Responsiveness --- */
 
     @media (max-width: 768px) {
@@ -494,6 +513,11 @@ html {
         <p><strong>It’s just the beginning. There’s so much room to expand and refine.</strong><br>
         If you found this useful, consider joining my WhatsApp group — your feedback helps me make the tool even better.</p>
 
+        <div class="social-icons">
+        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" aria-label="Messenger"><i class="fab fa-facebook-messenger"></i></a>
+        </div>
+
     <!--- End Content --->
     </main>
 
@@ -588,6 +612,7 @@ document.addEventListener("DOMContentLoaded", () => {
   </script>
 </body>
 </html>
+
 
 
 
