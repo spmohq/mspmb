@@ -3,250 +3,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Siva Prasad Mukherjee | Profile</title>
-    <!-- Premium Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Montserrat:wght@300;500;600&display=swap" rel="stylesheet">
-    <!-- Font Awesome for refined icons -->
+    <title>Profile Page</title>
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
-        /* BRAND COLOR PALETTE */
         :root {
-            --champagne-gold: #C89B3C;
-            --metallic-bronze: #8B5E1A;
-            --soft-ivory: #F8F4EC;
-            --cream-white: #FFFDF8;
-            --premium-brown: #35271A;
+            --primary-blue: #8B5E1A;
+            --light-bg: #35271A;
+            --text-dark: #333;
+            --white: #ffffff;
         }
 
-        * { box-sizing: border-box; }
-
         body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #FFFDF8;
             margin: 0;
-            background-color: #E8E2D6;
-            font-family: 'Montserrat', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            color: var(--premium-brown);
         }
 
         /* Mobile Container Simulation */
-        .phone-frame {
+        .phone-container {
             width: 100%;
-            max-width: 390px;
-            height: 844px;
-            background-color: var(--soft-ivory);
+            max-width: 375px;
+            height: 812px;
+            background-color: var(--light-bg);
             border-radius: 40px;
             overflow: hidden;
-            box-shadow: 0 50px 100px rgba(53, 39, 26, 0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
             position: relative;
             display: flex;
             flex-direction: column;
-            border: 1px solid rgba(139, 94, 26, 0.1);
         }
 
-        /* Photo Header - Using your uploaded image */
-        .photo-header {
+        /* Top Profile Image */
+        .profile-header {
             width: 100%;
-            height: 52%;
-            background-image: url('sivacanvas.png');
+            height: 45%;
+            background-image: url('spmukherjeecoin.png'); /* REPLACE WITH YOUR IMAGE */
             background-size: cover;
             background-position: center top;
             position: relative;
         }
 
-        /* Slanted Glass Box - Recreating the style from your screenshot */
-        .slanted-info-box {
+        /* Slanted Blue Info Box */
+        .info-box {
             position: absolute;
             bottom: -1px;
             left: 0;
-            width: 88%;
-            /* Luxury Champagne Gradient with Glassmorphism */
-            background: linear-gradient(135deg, rgba(200, 155, 60, 0.92), rgba(139, 94, 26, 0.95));
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 35px 25px;
-            clip-path: polygon(0 0, 88% 0, 100% 100%, 0% 100%);
-            color: var(--cream-white);
-            z-index: 10;
+            width: 85%;
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 20px 25px;
+            /* Creates the slanted edge on the right */
+            clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%);
+            z-index: 2;
         }
 
-        .slanted-info-box h1 {
-            font-family: 'Playfair Display', serif;
+        .info-box h1 {
             margin: 0;
             font-size: 28px;
-            font-weight: 600;
-            letter-spacing: -0.5px;
+            font-weight: 700;
         }
 
-        .slanted-info-box .title {
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin: 8px 0;
+        .info-box p {
+            margin: 5px 0;
+            font-size: 14px;
             opacity: 0.9;
-            font-weight: 300;
         }
 
-        .slanted-info-box .company {
-            font-size: 15px;
-            font-weight: 600;
+        .info-box .company {
+            font-weight: bold;
+            margin-top: 10px;
             display: block;
-            margin-top: 5px;
         }
 
         /* Circular Action Buttons */
-        .action-container {
+        .action-buttons {
             display: flex;
             justify-content: space-around;
-            padding: 35px 25px 25px 25px;
-            background: var(--soft-ivory);
+            padding: 25px 20px;
+            gap: 10px;
         }
 
         .btn-circle {
-            width: 54px;
-            height: 54px;
-            background-color: var(--premium-brown);
-            color: var(--champagne-gold);
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-blue);
+            color: white;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             text-decoration: none;
             font-size: 20px;
-            box-shadow: 0 10px 20px rgba(53, 39, 26, 0.1);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(200, 155, 60, 0.2);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
         }
 
         .btn-circle:hover {
-            transform: translateY(-3px);
-            background-color: var(--metallic-bronze);
-            color: white;
+            transform: scale(1.1);
         }
 
-        /* Social/Link Section */
-        .links-wrapper {
-            padding: 0 25px;
+        /* Link Cards Section */
+        .links-container {
+            padding: 0 20px;
             flex-grow: 1;
-            background: var(--soft-ivory);
         }
 
         .link-card {
-            background-color: var(--cream-white);
+            background-color: var(--white);
             border-radius: 15px;
-            padding: 18px 20px;
-            margin-bottom: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             text-decoration: none;
-            color: var(--premium-brown);
-            border: 1px solid rgba(139, 94, 26, 0.05);
-            transition: transform 0.2s ease;
+            color: var(--text-dark);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: background-color 0.2s;
         }
 
         .link-card:hover {
-            transform: scale(1.02);
-            border-color: var(--champagne-gold);
+            background-color: #f8f9fa;
         }
 
         .link-icon {
-            font-size: 26px;
-            width: 45px;
-            color: var(--metallic-bronze);
+            font-size: 30px;
+            margin-right: 15px;
         }
 
-        .link-body {
+        .facebook-color { color: #1877F2; }
+        .instagram-color { color: #E4405F; }
+        .linkedin-color { color: #0A66C2; }
+
+        .link-text {
             flex-grow: 1;
         }
 
-        .link-body .main-text {
-            font-weight: 600;
+        .link-text .title {
+            font-weight: bold;
             font-size: 16px;
             display: block;
         }
 
-        .link-body .sub-text {
-            font-size: 11px;
-            color: #8B7E6F;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 2px;
+        .link-text .subtitle {
+            font-size: 12px;
+            color: #777;
         }
 
         .chevron {
-            color: var(--champagne-gold);
+            color: var(--primary-blue);
             font-size: 14px;
-            opacity: 0.6;
         }
-
         /* Finishing Touches */
         .footer-logo {
             text-align: center;
             padding: 20px;
             font-size: 10px;
-            letter-spacing: 3px;
-            color: var(--metallic-bronze);
+
+            color: white;
             opacity: 0.5;
-            text-transform: uppercase;
+
         }
     </style>
 </head>
 <body>
 
-    <div class="phone-frame">
-        <!-- Photo Header with Cinematic Warmth -->
-        <div class="photo-header">
-            <!-- Recreated the slanted box from your screenshot using your brand colors -->
-            <div class="slanted-info-box">
+    <div class="phone-container">
+        <!-- Header Section -->
+        <div class="profile-header">
+            <div class="info-box">
                 <h1>Siva Prasad Mukherjee</h1>
+                <p>Digital Creator</p>
 
-                <span class="company">Digital Creator.</span>
             </div>
         </div>
 
-        <!-- Direct Contact Actions -->
-        <div class="action-container">
-            <a href="mailto:contact@creativewealth.com" class="btn-circle"><i class="fa-regular fa-envelope"></i></a>
+        <!-- Circular Contact Buttons -->
+        <div class="action-buttons">
+            <a href="mailto:example@email.com" class="btn-circle"><i class="fas fa-envelope"></i></a>
 
-            <a href="#" class="btn-circle"><i class="fa-regular fa-comment-dots"></i></a>
-            <a href="#" class="btn-circle"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="sms:+123456789" class="btn-circle"><i class="fas fa-comment-dots"></i></a>
+            <a href="https://wa.me/123456789" class="btn-circle"><i class="fab fa-whatsapp"></i></a>
         </div>
 
-        <!-- Minimalist Promotion Links -->
-        <div class="links-wrapper">
+        <!-- Social Media Links -->
+        <div class="links-container">
+
             <a href="#" class="link-card">
-                <i class="fa-brands fa-facebook-f link-icon"></i>
-                <div class="link-body">
-                    <span class="main-text">Facebook</span>
-                    <span class="sub-text">Exclusive Insights</span>
+                <i class="fa-solid fa-globe link-icon linkedin-color"></i>
+                <div class="link-text">
+                    <span class="title">Siva's Online Content Junction</span>
+                    <span class="subtitle">Download my guides and tools</span>
                 </div>
-                <i class="fa-solid fa-chevron-right chevron"></i>
+                <i class="fas fa-chevron-right chevron"></i>
             </a>
 
             <a href="#" class="link-card">
-                <i class="fa-brands fa-instagram link-icon"></i>
-                <div class="link-body">
-                    <span class="main-text">Instagram</span>
-                    <span class="sub-text">Lifestyle & Perspective</span>
+                <i class="fab fa-facebook link-icon facebook-color"></i>
+                <div class="link-text">
+                    <span class="title">Facebook</span>
+                    <span class="subtitle">Follow me on Facebook</span>
                 </div>
-                <i class="fa-solid fa-chevron-right chevron"></i>
+                <i class="fas fa-chevron-right chevron"></i>
             </a>
 
             <a href="#" class="link-card">
-                <i class="fa-brands fa-linkedin-in link-icon"></i>
-                <div class="link-body">
-                    <span class="main-text">LinkedIn</span>
-                    <span class="sub-text">Professional Network</span>
+                <i class="fab fa-instagram link-icon instagram-color"></i>
+                <div class="link-text">
+                    <span class="title">Instagram</span>
+                    <span class="subtitle">Follow me on Instagram</span>
                 </div>
-                <i class="fa-solid fa-chevron-right chevron"></i>
+                <i class="fas fa-chevron-right chevron"></i>
             </a>
+
+
         </div>
-
         <div class="footer-logo">
-            &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee.
+            <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.</p>
         </div>
     </div>
 
