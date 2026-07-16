@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>গগনে গগনে আপনার মনে </title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --deep-bg: #1A140E; /* Deep Cinematic Brown */
+            --gold: #C89B3C;
+            --bronze: #8B5E1A;
+            --ivory: #F8F4EC;
+            --cream: #FFFDF8;
+            --deep-text: #2C1E12; /* Very Prominent Font Color */
+            --muted-text: #5A4A3A;
+            --gloss-grad: linear-gradient(135deg, #8B5E1A 0%, #C89B3C 50%, #8B5E1A 100%);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--deep-bg);
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(200, 155, 60, 0.15) 0%, transparent 70%),
+                linear-gradient(180deg, #1A140E 0%, #0D0A07 100%);
+            color: var(--deep-text);
+            font-family: 'Hind Siliguri', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 24px;
+        }
+
+        .luxury-card {
+            background: var(--cream);
+            width: 100%;
+            max-width: 480px;
+            padding: 60px 40px;
+            border-radius: 28px;
+            text-align: center;
+            position: relative;
+            box-shadow: 
+                0 40px 100px -20px rgba(0, 0, 0, 0.8),
+                inset 0 1px 1px rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(200, 155, 60, 0.3);
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .icon-gloss {
+            width: 72px; height: 72px;
+            background: var(--gloss-grad);
+            border-radius: 22px;
+            margin: 0 auto 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 34px;
+            box-shadow: 0 15px 30px rgba(139, 94, 26, 0.4);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        h2 {
+            font-size: 30px;
+            color: var(--deep-text);
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        p {
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--muted-text);
+            margin-bottom: 45px;
+            font-weight: 400;
+        }
+
+        .btn-glossy {
+            display: block;
+            width: 100%;
+            background: var(--gloss-grad);
+            background-size: 200% auto;
+            color: white;
+            border: none;
+            padding: 22px;
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 40px -10px rgba(139, 94, 26, 0.5);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .btn-glossy:hover {
+            background-position: right center;
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 25px 50px -10px rgba(139, 94, 26, 0.6);
+        }
+
+        .footer-note {
+            margin-top: 40px;
+            font-size: 12px;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 480px) {
+            .luxury-card { padding: 50px 25px; border-radius: 20px; }
+            h2 { font-size: 26px; }
+            p { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+<BODY oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
+    <div class="luxury-card">
+        <div class="icon-gloss">✧</div>
+        <h2>খালিগলায় রবীন্দ্রসংঙ্গীত</h2>
+        <p>গগনে গগনে আপনার মনে কী খেলা তব।<br /> 
+তুমি কত বেশে নিমেষে নিমেষে নিতুই নব॥</p>
+
+  <audio controls autoplay loop>
+    <source src="gagane.mp3" type="audio/mpeg">
+  </audio>
+        
+
+
+        <div class="footer-note">শিল্পী: হেমন্ত মুখার্জি</div>
+    </div>
+
+    <script>
+        function go() {
+            const vault = "aHR0cHM6Ly9zcG0uaW4ubmV0";
+            window.location.href = atob(vault);
+        }
+    </script>
+</body>
+</html>
