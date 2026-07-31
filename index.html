@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Page</title>
+    <title>Siva Prasad Mukherjee | Profile Page</title>
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-blue: #8B5E1A;
-            --light-bg: #35271A;
-            --text-dark: #333;
+            --brand-dark: #09130b;      /* Deep Green/Black */
+            --brand-light-sage: #93b082; /* Light Sage */
+            --brand-mid-green: #6f9860;  /* Primary Action */
+            --brand-forest: #426045;     /* Card Backgrounds */
+            --brand-slate: #738086;      /* Muted Text */
             --white: #ffffff;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #FFFDF8;
+            background-color: #f4f7f4; 
             margin: 0;
             display: flex;
             justify-content: center;
@@ -29,10 +31,10 @@
             width: 100%;
             max-width: 375px;
             height: 812px;
-            background-color: var(--light-bg);
+            background-color: var(--brand-dark);
             border-radius: 40px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             position: relative;
             display: flex;
             flex-direction: column;
@@ -42,42 +44,39 @@
         .profile-header {
             width: 100%;
             height: 45%;
-            background-image: url('spmukherjeecoin.png'); /* REPLACE WITH YOUR IMAGE */
+            background-image: url('spmukherjeecoin.png'); 
             background-size: cover;
             background-position: center top;
             position: relative;
+            border-bottom: 4px solid var(--brand-mid-green);
         }
 
-        /* Slanted Blue Info Box */
+        /* Slanted Info Box */
         .info-box {
             position: absolute;
             bottom: -1px;
             left: 0;
             width: 85%;
-            background-color: var(--primary-blue);
-            color: white;
+            background-color: var(--brand-mid-green);
+            color: var(--white);
             padding: 20px 25px;
-            /* Creates the slanted edge on the right */
             clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%);
             z-index: 2;
         }
 
         .info-box h1 {
             margin: 0;
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 700;
+            letter-spacing: -0.5px;
         }
 
         .info-box p {
             margin: 5px 0;
             font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             opacity: 0.9;
-        }
-
-        .info-box .company {
-            font-weight: bold;
-            margin-top: 10px;
-            display: block;
         }
 
         /* Circular Action Buttons */
@@ -89,84 +88,97 @@
         }
 
         .btn-circle {
-            width: 50px;
-            height: 50px;
-            background-color: var(--primary-blue);
-            color: white;
+            width: 55px;
+            height: 55px;
+            background-color: var(--brand-light-sage);
+            color: var(--brand-dark);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             text-decoration: none;
-            font-size: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
+            font-size: 22px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
         }
 
         .btn-circle:hover {
-            transform: scale(1.1);
+            transform: translateY(-3px);
+            background-color: var(--white);
         }
 
         /* Link Cards Section */
         .links-container {
             padding: 0 20px;
             flex-grow: 1;
+            overflow-y: auto;
         }
 
         .link-card {
-            background-color: var(--white);
+            background-color: var(--brand-forest);
             border-radius: 15px;
-            padding: 15px;
-            margin-bottom: 15px;
+            padding: 16px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             text-decoration: none;
-            color: var(--text-dark);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: background-color 0.2s;
+            color: var(--white);
+            transition: transform 0.2s, background-color 0.2s;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .link-card:hover {
-            background-color: #f8f9fa;
+            background-color: #4d6e50;
+            transform: scale(1.02);
         }
 
         .link-icon {
-            font-size: 30px;
+            font-size: 24px;
             margin-right: 15px;
+            width: 30px;
+            text-align: center;
+            color: var(--brand-light-sage);
         }
-
-        .facebook-color { color: #1877F2; }
-        .instagram-color { color: #E4405F; }
-        .linkedin-color { color: #0A66C2; }
 
         .link-text {
             flex-grow: 1;
         }
 
         .link-text .title {
-            font-weight: bold;
-            font-size: 16px;
+            font-weight: 600;
+            font-size: 15px;
             display: block;
+            margin-bottom: 2px;
         }
 
         .link-text .subtitle {
-            font-size: 12px;
-            color: #777;
+            font-size: 11px;
+            color: var(--brand-light-sage);
+            opacity: 0.8;
         }
 
         .chevron {
-            color: var(--primary-blue);
-            font-size: 14px;
+            color: var(--brand-light-sage);
+            font-size: 12px;
+            opacity: 0.5;
         }
-        /* Finishing Touches */
+
+        /* Footer */
         .footer-logo {
             text-align: center;
-            padding: 20px;
+            padding: 15px;
             font-size: 10px;
+            color: var(--brand-slate);
+            letter-spacing: 0.5px;
+        }
 
-            color: white;
-            opacity: 0.5;
-
+        /* Custom Scrollbar */
+        .links-container::-webkit-scrollbar {
+            width: 4px;
+        }
+        .links-container::-webkit-scrollbar-thumb {
+            background: var(--brand-forest);
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -177,53 +189,51 @@
         <div class="profile-header">
             <div class="info-box">
                 <h1>Siva Prasad Mukherjee</h1>
-                <p>Digital Creator</p>
-
+                <p>Online Business Strategist</p>
             </div>
         </div>
 
-        <!-- Circular Contact Buttons -->
+        <!-- Circular Contact Buttons (Updated) -->
         <div class="action-buttons">
-            <a href="mailto:example@email.com" class="btn-circle"><i class="fas fa-envelope"></i></a>
-
-            <a href="sms:+123456789" class="btn-circle"><i class="fas fa-comment-dots"></i></a>
-            <a href="https://wa.me/123456789" class="btn-circle"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.pinterest.com/onlinebusinessassessment" class="btn-circle" title="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+            <a href="https://www.facebook.com/personalizedonlinebusinessassessment" class="btn-circle" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="mailto:mail@spmukherjee.co.in" class="btn-circle" title="Email Me"><i class="fas fa-envelope"></i></a>
         </div>
 
         <!-- Social Media Links -->
         <div class="links-container">
 
-            <a href="https://socj.spmukherjee.co.in/" class="link-card">
-                <i class="fa-solid fa-globe link-icon linkedin-color"></i>
+            <a href="https://poba.spmukherjee.co.in/" class="link-card">
+                <i class="fa-solid fa-globe link-icon"></i>
                 <div class="link-text">
-                    <span class="title">Siva's Online Content Junction</span>
-                    <span class="subtitle">Download my guides and tools</span>
+                    <span class="title">Discover the Online Business</span>
+                    <span class="subtitle">That Fits You - Don't guess.</span>
                 </div>
                 <i class="fas fa-chevron-right chevron"></i>
             </a>
 
-            <a href="#" class="link-card">
-                <i class="fab fa-facebook link-icon facebook-color"></i>
+            <a href="https://www.facebook.com/personalizedonlinebusinessassessment" class="link-card">
+                <i class="fab fa-facebook link-icon"></i>
                 <div class="link-text">
-                    <span class="title">Facebook</span>
-                    <span class="subtitle">Follow me on Facebook</span>
+                    <span class="title">Facebook Community</span>
+                    <span class="subtitle">Join our business network</span>
                 </div>
                 <i class="fas fa-chevron-right chevron"></i>
             </a>
 
-            <a href="#" class="link-card">
-                <i class="fab fa-instagram link-icon instagram-color"></i>
+            <a href="https://www.pinterest.com/onlinebusinessassessment" class="link-card">
+                <i class="fab fa-pinterest link-icon"></i>
                 <div class="link-text">
-                    <span class="title">Instagram</span>
-                    <span class="subtitle">Follow me on Instagram</span>
+                    <span class="title">Pinterest Insights</span>
+                    <span class="subtitle">Visual strategies and inspiration</span>
                 </div>
                 <i class="fas fa-chevron-right chevron"></i>
             </a>
-
 
         </div>
+
         <div class="footer-logo">
-            <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.</p>
+            <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee.<br>All Rights Reserved.</p>
         </div>
     </div>
 
